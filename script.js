@@ -1,0 +1,1 @@
+console.log("Bella Kitchen website loaded successfully!");
