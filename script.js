@@ -370,6 +370,67 @@ observer.observe(element);
 
 });
 
+/* openning hours status */
+const openingHours = {
+    0:{open: "11:00", close: "17:00"}, // Sunday
+    1:{open: "09:00", close: "23:00"}, // Monday
+    2:{open: "09:00", close: "23:00"}, // Tuesday
+    3:{open: "09:00", close: "23:00"}, // Wednesday
+    4:{open: "09:00", close: "23:00"}, // Thursday
+    5:{open: "09:00", close: "23:00"}, // Friday
+    6:{open: "11:00", close: "22:00"}  // Saturday
+};
+
+function checkOpeningStatus(){
+    const now= new Date();
+
+    const day = now.getDay();
+    const currentminute=now.getHours()*60+now.getMinutes();
+
+    const today=openingHours[day];
+
+    const [openHour, openMinute] = today.open.split(":").map(Number);
+    const [closeHour, closeMinute] = today.close.split(":").map(Number);
+
+    const openingMinutes=openHour*60+openMinute;
+    let clossinMinutes=closeHour*60+closeMinute;
+    // if closing time is after midnight
+    if(clossinMinutes<=openingMinutes){
+        clossinMinutes+=24*60;
+    }
+
+    let adjustedCurrentMinutes=currentminute;
+    // handle after-midnight openning period
+    if(currentminute<openingMinutes){
+        adjustedCurrentMinutes+=24*60;
+    }
+
+    const statusElement=document.getElementById("status");
+    const textElement = statusElement.querySelector(".text");
+    
+    if(adjustedCurrentMinutes>=openingMinutes &&
+          adjustedCurrentMinutes<clossinMinutes
+        )
+    {
+
+    statusElement.classList.remove("closed");
+    statusElement.classList.add("open");
+    textElement.textContent = "Open Now";
+
+    }
+    else{
+       statusElement.classList.remove("open");
+    statusElement.classList.add("closed");
+    textElement.textContent = "Closed Now";
+    }
+
+
+}
+// run function on page load
+    checkOpeningStatus();
+    // check every minute
+    setInterval(checkOpeningStatus, 60000);
+
 /* =========================
 CONSOLE MESSAGE
 ========================= */
