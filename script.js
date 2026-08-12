@@ -26,7 +26,7 @@ if (navLinks.classList.contains("show")) {
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
-```
+
 link.addEventListener("click", () => {
 
     navLinks.classList.remove("show");
@@ -89,7 +89,7 @@ filter.addEventListener("click", () => {
     });
 
 });
-```
+
 
 });
 
@@ -299,7 +299,7 @@ cart.forEach(item => {
 
 message += `%0ATotal: R${total}`;
 
-const whatsappNumber = "27123456789";
+const whatsappNumber = "27766820030";
 
 const whatsappURL =
     `https://wa.me/${whatsappNumber}?text=${message}`;
