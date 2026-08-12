@@ -17,7 +17,28 @@ body {
     color: #222;
     line-height: 1.6;
 }
-
+/*
+status
+*/
+#status {
+    display: flex;
+    align-items: center;
+    color: #555;
+    gap: 6px;
+    font-size: 14px;
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: gray; /* default */
+}
+.open .dot {
+    background: #2ecc71;
+}
+.closed .dot {
+    background: #e74c3c;
+}
 /* =========================
 NAVBAR
 ========================= */
